@@ -19,10 +19,22 @@ plt.title("P x X")
 plt.xlabel("X")
 plt.ylabel("Pressão")
 
+'''
+essa regressão dá pra fazer para mais de um grau (nesse caso deg =1)
 reg = np.polyfit(x1,P,deg=1)
 
 print("a=",reg[0],"b=",reg[1])
 #ax + b = y
 
 linear_reg= np.polyval(reg,x1)
+plt.plot(x1,linear_reg)
+'''
+
+new_regression = scipy.stats.linregress(x1,P)
+#essa forma 'scipy.stats.linregress' dá
+#a , b, rval, pval, stderr, intercept_stderr
+
+print("os valores de a e b da curva são:",new_regression[0:2])
+
+linear_reg= np.polyval(new_regression[0:2],x1)
 plt.plot(x1,linear_reg)
